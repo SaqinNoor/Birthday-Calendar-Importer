@@ -55,6 +55,7 @@ google-api-python-client
 oauth2client
 python-dateutil
 colorama
+openpyxl
 ```
 
 ## Google Calendar API Setup
