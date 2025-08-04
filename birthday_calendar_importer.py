@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Birthday to Google Calendar Importer
 ======================================
