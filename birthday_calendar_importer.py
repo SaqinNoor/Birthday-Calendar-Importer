@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Birthday to Google Calendar Importer
 ======================================
@@ -20,7 +19,7 @@ Google Calendar. It includes the following features:
 
 3. **Smart Event Creation**
    - Creates yearly recurring all-day events in the format "[Name]'s Birthday".
-   - Sets two email reminders: 24 hours before (1440 minutes) and at event start (0 minutes).
+   - Sets email and in-app (popup) reminders: 24 hours before (1440 minutes) and at event start (0 minutes).
    - Presents a summary (counts) of the events to be created before actually creating them.
 
 4. **User Control Safeguards**
@@ -245,7 +244,7 @@ def check_duplicate(service, calendar_id, event_title, event_date):
 
 def create_birthday_event(service, calendar_id, name, birthday_str, dry_run=False):
     """
-    Create a yearly recurring all-day birthday event with two email reminders.
+    Create a yearly recurring all-day birthday event with email and popup reminders.
     Returns the created event resource (or None in dry-run mode).
     """
     try:
@@ -269,8 +268,10 @@ def create_birthday_event(service, calendar_id, name, birthday_str, dry_run=Fals
         'reminders': {
             'useDefault': False,
             'overrides': [
-                {'method': 'email', 'minutes': 1440},  # 24 hours before
-                {'method': 'email', 'minutes': 0}        # At event start
+                {'method': 'email', 'minutes': 1440},  # 24 hours before (email)
+                {'method': 'popup', 'minutes': 1440},  # 24 hours before (popup/in-app)
+                {'method': 'email', 'minutes': 0},     # At event start (email)
+                {'method': 'popup', 'minutes': 0}      # At event start (popup/in-app)
             ],
         }
     }
@@ -425,3 +426,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
