@@ -1,110 +1,138 @@
-
 # Birthday to Google Calendar Importer
 
-![Python Version](https://img.shields.io/badge/Python-3.6%2B-blue.svg)
+![Python Version](https://img.shields.io/badge/Python-3.9%2B-blue.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 ![Last Commit](https://img.shields.io/github/last-commit/SaqinNoor/birthday-calendar-importer)
 
-A Python script that imports birthday data from an Excel or CSV file into your Google Calendar with built-in validation, duplicate checking, and an interactive, colorful CLI.
+A modern Python tool that imports birthdays from Excel/CSV into your Google Calendar with validation, duplicate detection, and an interactive colorful CLI. Designed to make recurring birthday events painless.
 
-## Features
+---
 
-- **Excel/CSV Parsing & Validation**
-  - Map columns for names and birthdays.
-  - Preview and validate data before processing.
-- **Google Calendar Integration**
-  - Secure OAuth2 authentication.
-  - Access a specific Google Calendar by ID.
-- **Smart Event Creation**
-  - Automatically creates yearly recurring all-day birthday events.
-  - Sets email reminders 24 hours before and at the event start.
-- **User Control Safeguards**
-  - Interactive confirmations at every step.
-  - Dry-run mode to simulate actions without making changes.
-  - Rollback capability for events created during the session.
-- **Modern CLI Experience**
-  - Command-line arguments for non-interactive use.
-  - Colorful outputs using [Colorama](https://pypi.org/project/colorama/).
+## ✨ Features
 
-## Prerequisites
+* **Excel/CSV Parsing & Validation**
 
-- **Python 3.6+**  
-- **Google Calendar API Credentials**  
-  Set up your credentials by creating an OAuth2 client ID (Desktop App) in the [Google Cloud Console](https://console.cloud.google.com/).
+  * Case-insensitive column matching.
+  * Data preview and date normalization.
+  * Error reporting for invalid or missing dates.
 
-## Installation
+* **Google Calendar Integration**
 
-Clone the repository and navigate to the project directory:
+  * Secure OAuth2 authentication via `google-auth-oauthlib`.
+  * Works with your primary calendar or a custom calendar ID.
+  * Prevents duplicate entries with smart event lookups.
+
+* **Smart Event Creation**
+
+  * Creates yearly recurring all-day birthday events.
+  * Adds email + popup reminders (configurable).
+  * Consistent event titles: `🎂 {Name}'s Birthday`.
+
+* **User Control & Safety**
+
+  * Interactive confirmations at every step.
+  * Dry-run mode to preview without writing.
+  * Automatic rollback of created events if the process is interrupted.
+
+* **Modern CLI Experience**
+
+  * Supports command-line arguments for automation.
+  * Colorful, easy-to-read output using [Colorama](https://pypi.org/project/colorama/).
+
+---
+
+## 📦 Prerequisites
+
+* Python **3.9+** (tested up to 3.12)
+* Google Calendar API credentials (`credentials.json`)
+
+---
+
+## ⚙️ Installation
+
+Clone the repository:
 
 ```bash
-git clone https://github.com/SaqinNoor/Birthday-Calendar-Importer.git
-cd Birthday-Calendar-Importer
+git clone https://github.com/SaqinNoor/birthday-calendar-importer.git
+cd birthday-calendar-importer
 ```
 
-Install the required packages using pip:
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-*The `requirements.txt` should include:*
+**Requirements include:**
 
 ```
 pandas
 google-api-python-client
-oauth2client
+google-auth-oauthlib
+google-auth-httplib2
 python-dateutil
 colorama
 openpyxl
 ```
 
-## Google Calendar API Setup
+---
+
+## 🔑 Google Calendar API Setup
 
 1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
-2. Create a new project or select an existing one.
+2. Create a project or select an existing one.
 3. Enable the **Google Calendar API**.
-4. Create OAuth2 credentials (choose "Desktop App" as the application type).
-5. Download the `credentials.json` file and place it in the project root directory.
+4. Create **OAuth2 credentials** (Application type: *Desktop app*).
+5. Download `credentials.json` and place it in the project root.
+6. First run will open a browser for authentication and create a `token.json` file for reuse.
 
-## Usage
+---
 
-You can run the script in interactive mode:
+## 🚀 Usage
+
+Interactive mode:
 
 ```bash
 python birthday_calendar_importer.py
 ```
 
-Or you can use command-line arguments to streamline the process:
+Command-line mode:
 
 ```bash
 python birthday_calendar_importer.py \
-  --file "/path/to/birthdays.csv" \
-  --name-column "Full Name" \
-  --birthday-column "Birthdate" \
+  --file "birthdays.xlsx" \
+  --name-column "Name" \
+  --birthday-column "Birthday" \
   --calendar "your_calendar_id" \
   --dry-run
 ```
 
-*Note: The `--dry-run` flag simulates event creation without writing to your calendar.*
-
-
-## Logging
-
-All actions are logged to a file named `birthday_importer.log` in the project directory for easy debugging and review.
-
-## Contributing
-
-Contributions are welcome! If you have ideas, bug fixes, or improvements, feel free to submit a pull request or open an issue.
-
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Commit your changes.
-4. Open a pull request detailing your changes.
-
-## License
-
-Distributed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+* `--dry-run` → Simulates creation without modifying your calendar.
+* `--calendar` → Optional. Defaults to your primary calendar.
 
 ---
 
-Happy scheduling! 🎉
+## 📝 Logging
+
+* Logs all operations to `birthday_importer.log` in the project directory.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! 🎉
+
+1. Fork the repository.
+2. Create a feature/bugfix branch.
+3. Commit and push your changes.
+4. Open a pull request.
+
+---
+
+## 📜 License
+
+Distributed under the **MIT License**. See [LICENSE](LICENSE) for details.
+
+---
+
+🎂 Make birthdays unforgettable!
