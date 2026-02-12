@@ -1,0 +1,19 @@
+# Sensitive Google API files
+credentials.json
+token.json
+
+# Logs and Data
+*.log
+bday.xlsx
+birthdays.xlsx
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
