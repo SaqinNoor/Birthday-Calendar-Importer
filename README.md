@@ -32,6 +32,7 @@ A modern Python tool that imports birthdays from Excel/CSV into your Google Cale
 ## 📦 Prerequisites
 
 *   Python **3.9+**
+*   [uv](https://docs.astral.sh/uv/) for dependency management
 *   Google Calendar API credentials (`credentials.json`)
 
 ---
@@ -41,7 +42,7 @@ A modern Python tool that imports birthdays from Excel/CSV into your Google Cale
 ```bash
 git clone https://github.com/SaqinNoor/birthday-calendar-importer.git
 cd birthday-calendar-importer
-pip install -r requirements.txt
+uv sync
 ```
 
 ---
@@ -60,12 +61,12 @@ pip install -r requirements.txt
 
 Interactive mode:
 ```bash
-python birthday_calendar_importer.py
+uv run birthday_calendar_importer.py
 ```
 
 Command-line mode:
 ```bash
-python birthday_calendar_importer.py \
+uv run birthday_calendar_importer.py \
   --file "birthdays.xlsx" \
   --name-column "Name" \
   --birthday-column "Birthday" \
